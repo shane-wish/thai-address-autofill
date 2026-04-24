@@ -1,0 +1,95 @@
+{
+  "name": "thai-address-autofill",
+  "version": "0.1.0",
+  "description": "Thai address autocomplete and autofill utilities for React, with Thai-only and bilingual entry points.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shane-wish/thai-address-autofill.git"
+  },
+  "homepage": "https://shane-wish.github.io/thai-address-autofill/",
+  "bugs": {
+    "url": "https://github.com/shane-wish/thai-address-autofill/issues"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./full": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./en": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./th": {
+      "types": "./dist/index-th.d.ts",
+      "import": "./dist/index-th.js"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js"
+    },
+    "./core/full": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js"
+    },
+    "./core/th": {
+      "types": "./dist/core-th.d.ts",
+      "import": "./dist/core-th.js"
+    }
+  },
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true }); require('node:fs').rmSync('dist-demo', { recursive: true, force: true })\"",
+    "generate:data": "node ./scripts/generate-data.mjs",
+    "build": "npm run clean && npm run generate:data && tsc -p tsconfig.json",
+    "test": "npm run build && node --test ./tests/*.test.mjs",
+    "pack:check": "npm pack --json --dry-run",
+    "benchmark": "npm run build && node ./scripts/benchmark.mjs",
+    "demo": "vite demo",
+    "demo:build": "vite build demo",
+    "prepublishOnly": "npm run test && npm run benchmark && npm run pack:check"
+  },
+  "keywords": [
+    "thailand",
+    "thai",
+    "address",
+    "autocomplete",
+    "autofill",
+    "react",
+    "subdistrict",
+    "postcode",
+    "bangkok"
+  ],
+  "author": "Shane Wish",
+  "engines": {
+    "node": ">=18"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.13",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.7"
+  }
+}
